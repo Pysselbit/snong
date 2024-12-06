@@ -8,8 +8,8 @@ public class ScreenController : MonoBehaviour {
     
     private Texture2D _texture;
 
-    private int _width;
-    private int _height;
+    public int Width => _texture.width;
+    public int Height => _texture.height;
 
     private bool _isDirty;
 
@@ -17,9 +17,6 @@ public class ScreenController : MonoBehaviour {
         var rawImage = GetComponent<RawImage>();
         _texture = Instantiate(rawImage.texture) as Texture2D;
         rawImage.texture = _texture;
-        
-        _width = _texture.width;
-        _height = _texture.height;
     }
 
     private void LateUpdate() {
@@ -29,8 +26,12 @@ public class ScreenController : MonoBehaviour {
         }
     }
 
+    public void SetPixel(Vector2Int position, bool active) {
+        SetPixel(position.x, position.y, active);
+    }
+
     public void SetPixel(int x, int y, bool active) {
-        if (x < 0 || x >= _width || y < 0 || y >= _height)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return;
 
         var color = active ? Color.black : Color.clear;
