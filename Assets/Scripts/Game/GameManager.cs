@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     [Space]
     [SerializeField] private Vector2Int _snakeGameSize = Vector2Int.one;
     [SerializeField] private int _snakeGameScale = 1;
+    [SerializeField] private int _snakeLength = 4;
 
     [Space]
     [SerializeField] private float _snakeTickDuration = 1f;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour {
     public Game Game { get; private set; }
     
     private void Awake() {
-        Game = new Game(_leftSnakeGamePosition, _rightSnakeGamePosition, _snakeGameSize, _snakeGameScale);
+        Game = new Game(_leftSnakeGamePosition, _rightSnakeGamePosition, _snakeGameSize, _snakeGameScale, _snakeLength);
 
         _nextSnakeTick = _snakeTickDuration;
     }

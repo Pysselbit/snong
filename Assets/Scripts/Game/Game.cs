@@ -10,12 +10,12 @@ public class Game {
     public SnakeGame LeftSnakeGame { get; }
     public SnakeGame RightSnakeGame { get; }
 
-    public Game(Vector2Int leftSnakeGamePosition, Vector2Int rightSnakeGamePosition, Vector2Int snakeGameSize, int snakeScale) {
+    public Game(Vector2Int leftSnakeGamePosition, Vector2Int rightSnakeGamePosition, Vector2Int snakeGameSize, int snakeScale, int snakeLength) {
         LeftSnakeGame = new SnakeGame(leftSnakeGamePosition, snakeGameSize, snakeScale);
         RightSnakeGame = new SnakeGame(rightSnakeGamePosition, snakeGameSize, snakeScale);
         
-        LeftSnakeGame.Initialize(Vector2Int.zero, SnakeGame.Direction.Up, 5);
-        RightSnakeGame.Initialize(snakeGameSize - Vector2Int.one, SnakeGame.Direction.Down, 5);
+        LeftSnakeGame.Initialize(Vector2Int.zero, SnakeGame.Direction.Up, snakeLength);
+        RightSnakeGame.Initialize(snakeGameSize - Vector2Int.one, SnakeGame.Direction.Down, snakeLength);
     }
 
     public void TickSnakeGames() {

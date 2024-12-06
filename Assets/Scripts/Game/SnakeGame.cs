@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SnakeGame {
     
@@ -34,13 +36,13 @@ public class SnakeGame {
     }
 
     public void Initialize(Vector2Int start, Direction direction, int length) {
-        Snake = new();
-        Apple = new Vector2Int(5, 5);
-        
         _direction = _directions[direction];
         
+        Snake = new();
         for (var i = 0; i < length; i++)
             Snake.AddFirst(start + i * _direction);
+        
+        PlaceApple();
     }
 
     public void Tick() {
@@ -52,10 +54,31 @@ public class SnakeGame {
         if (head.y >= Size.y) head.y -= Size.y;
         
         Snake.AddFirst(head);
-        Snake.RemoveLast();
+
+        if (Snake.First.Value == Apple)
+            PlaceApple();
+        else
+            Snake.RemoveLast();
     }
 
     public void SetDirection(Direction direction) {
         _direction = _directions[direction];
+    }
+
+    private void PlaceApple() {
+        var apple = -Vector2Int.one;
+
+        while (apple.x < 0) {
+            apple = new Vector2Int(Random.Range(0, Size.x), Random.Range(0, Size.y));
+
+            foreach (var link in Snake) {
+                if (apple == link) {
+                    apple = -Vector2Int.one;
+                    break;
+                }
+            }
+        }
+
+        Apple = apple;
     }
 }

@@ -60,10 +60,16 @@ public class GameView : MonoBehaviour {
         }
 
         var head = snake.First.Value;
-        
         for (var x = scale * head.x + 1; x < scale * (head.x + 1) - 1; x++) {
             for (var y = scale * head.y + 1; y < scale * (head.y + 1) - 1; y++) {
                 _screenController.SetPixel(position.x + x, position.y + y, false);
+            }
+        }
+
+        var apple = snakeGame.Apple;
+        for (var x = scale * apple.x + 1; x < scale * (apple.x + 1) - 1; x++) {
+            for (var y = scale * apple.y + 1; y < scale * (apple.y + 1) - 1; y++) {
+                _screenController.SetPixel(position.x + x, position.y + y, true);
             }
         }
     }
