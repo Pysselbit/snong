@@ -14,8 +14,8 @@ public class Game {
         LeftSnakeGame = new SnakeGame(leftSnakeGamePosition, snakeGameSize, snakeScale);
         RightSnakeGame = new SnakeGame(rightSnakeGamePosition, snakeGameSize, snakeScale);
         
-        LeftSnakeGame.Initialize(Vector2Int.zero, SnakeGame.Direction.Up, snakeLength);
-        RightSnakeGame.Initialize(snakeGameSize - Vector2Int.one, SnakeGame.Direction.Down, snakeLength);
+        LeftSnakeGame.Reset(Vector2Int.zero, SnakeGame.Direction.Up, snakeLength);
+        RightSnakeGame.Reset(snakeGameSize - Vector2Int.one, SnakeGame.Direction.Down, snakeLength);
     }
 
     public void TickSnakeGames() {

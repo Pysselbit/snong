@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,9 +13,9 @@ public class SnakeGame {
         Down
     }
     
-    public Vector2Int Position { get; }
-    public Vector2Int Size { get; }
-    public int Scale { get; private set; }
+    public Vector2Int GamePosition { get; }
+    public Vector2Int GameSize { get; }
+    public int GameScale { get; private set; }
 
     public LinkedList<Vector2Int> Snake { get; private set; }
     public Vector2Int Apple { get; private set; }
@@ -29,18 +28,18 @@ public class SnakeGame {
         { Direction.Left, Vector2Int.left }
     };
 
-    public SnakeGame(Vector2Int position, Vector2Int size, int scale) {
-        Position = position;
-        Size = size;
-        Scale = scale;
+    public SnakeGame(Vector2Int gamePosition, Vector2Int gameSize, int gameScale) {
+        GamePosition = gamePosition;
+        GameSize = gameSize;
+        GameScale = gameScale;
     }
 
-    public void Initialize(Vector2Int start, Direction direction, int length) {
+    public void Reset(Vector2Int position, Direction direction, int length) {
         _direction = _directions[direction];
         
         Snake = new();
         for (var i = 0; i < length; i++)
-            Snake.AddFirst(start + i * _direction);
+            Snake.AddFirst(position + i * _direction);
         
         PlaceApple();
     }
@@ -48,10 +47,14 @@ public class SnakeGame {
     public void Tick() {
         Vector2Int head = Snake.First.Value + _direction;
 
-        if (head.x < 0) head.x += Size.x;
-        if (head.y < 0) head.y += Size.y;
-        if (head.x >= Size.x) head.x -= Size.x;
-        if (head.y >= Size.y) head.y -= Size.y;
+        if (head.x < 0)
+            head.x += GameSize.x;
+        if (head.y < 0)
+            head.y += GameSize.y;
+        if (head.x >= GameSize.x)
+            head.x -= GameSize.x;
+        if (head.y >= GameSize.y)
+            head.y -= GameSize.y;
         
         Snake.AddFirst(head);
 
@@ -69,7 +72,7 @@ public class SnakeGame {
         var apple = -Vector2Int.one;
 
         while (apple.x < 0) {
-            apple = new Vector2Int(Random.Range(0, Size.x), Random.Range(0, Size.y));
+            apple = new Vector2Int(Random.Range(0, GameSize.x), Random.Range(0, GameSize.y));
 
             foreach (var link in Snake) {
                 if (apple == link) {

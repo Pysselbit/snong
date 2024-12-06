@@ -47,8 +47,8 @@ public class GameView : MonoBehaviour {
     }
 
     private void DrawSnakeGame(SnakeGame snakeGame) {
-        var position = snakeGame.Position;
-        var scale = snakeGame.Scale;
+        var position = snakeGame.GamePosition;
+        var scale = snakeGame.GameScale;
         var snake = snakeGame.Snake;
         
         foreach (var link in snake) {
