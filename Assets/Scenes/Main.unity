@@ -233,6 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152790625}
+  - component: {fileID: 152790629}
   - component: {fileID: 152790628}
   - component: {fileID: 152790627}
   - component: {fileID: 152790626}
@@ -309,6 +310,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23760ef4861cc472c883758d4a83671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &152790629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152790624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6caebe59d74524225a363ea7669f4b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 445308799}
+  _screenController: {fileID: 152790628}
+  _screenArea:
+    x: 1
+    y: 1
+    width: 82
+    height: 40
+  _separatorArea:
+    x: 41
+    y: 1
+    width: 2
+    height: 40
+--- !u!1 &445308798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445308800}
+  - component: {fileID: 445308799}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &445308799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445308798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a280deb36d754727ada6d3e3d611797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftSnakeGamePosition: {x: 1, y: 1}
+  _rightSnakeGamePosition: {x: 43, y: 1}
+  _snakeGameSize: {x: 10, y: 10}
+  _snakeGameScale: 4
+  _snakeTickDuration: 0.25
+--- !u!4 &445308800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445308798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 721.80725, y: 633.9121, z: -1.5663847}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +623,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 445308800}
   - {fileID: 519420032}
   - {fileID: 142402115}
   - {fileID: 598274871}
