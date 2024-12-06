@@ -367,6 +367,7 @@ MonoBehaviour:
   _rightSnakeGamePosition: {x: 43, y: 1}
   _snakeGameSize: {x: 10, y: 10}
   _snakeGameScale: 4
+  _snakeLength: 4
   _snakeTickDuration: 0.25
 --- !u!4 &445308800
 Transform:
