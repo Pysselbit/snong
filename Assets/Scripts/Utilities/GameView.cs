@@ -28,6 +28,8 @@ public class GameView : MonoBehaviour {
         
         DrawSnakeGame(_game.LeftSnakeGame);
         DrawSnakeGame(_game.RightSnakeGame);
+        
+        DrawPongGame(_game.PongGame);
     }
 
     private void ClearScreen() {
@@ -72,5 +74,16 @@ public class GameView : MonoBehaviour {
                 _screenController.SetPixel(position.x + x, position.y + y, true);
             }
         }
+    }
+
+    private void DrawPongGame(PongGame pongGame) {
+        var x = pongGame.Position.x;
+        var y = pongGame.Position.y;
+        
+        _screenController.SetPixel(x, y + 1, true);
+        _screenController.SetPixel(x - 1, y, true);
+        _screenController.SetPixel(x, y, true);
+        _screenController.SetPixel(x + 1, y, true);
+        _screenController.SetPixel(x, y - 1, true);
     }
 }

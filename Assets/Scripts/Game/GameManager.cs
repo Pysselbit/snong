@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour {
+
+    [SerializeField] private Vector2Int _pongGamePosition;
+    [SerializeField] private Vector2Int _pongGameSize;
     
+    [Space]
     [SerializeField] private Vector2Int _leftSnakeGamePosition;
     [SerializeField] private Vector2Int _rightSnakeGamePosition;
     
@@ -15,15 +19,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int _snakeLength = 4;
 
     [Space]
+    [SerializeField] private float _pongTickDuration = 1f;
     [SerializeField] private float _snakeTickDuration = 1f;
 
+    private float _nextPongTick;
     private float _nextSnakeTick;
 
     public Game Game { get; private set; }
     
     private void Awake() {
-        Game = new Game(_leftSnakeGamePosition, _rightSnakeGamePosition, _snakeGameSize, _snakeGameScale, _snakeLength);
+        Game = new Game(_pongGamePosition, _pongGameSize, Vector2Int.one,
+            _leftSnakeGamePosition, _rightSnakeGamePosition, _snakeGameSize, _snakeGameScale, _snakeLength);
 
+        _nextPongTick = _pongTickDuration;
         _nextSnakeTick = _snakeTickDuration;
     }
 
@@ -34,6 +42,12 @@ public class GameManager : MonoBehaviour {
             Game.TickSnakeGames();
 
             _nextSnakeTick += _snakeTickDuration;
+        }
+        
+        if (Time.time >= _nextPongTick) {
+            Game.TickPongGame();
+
+            _nextPongTick += _pongTickDuration;
         }
     }
 
